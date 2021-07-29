@@ -13,14 +13,11 @@ namespace HrProgram.Services
     {
         private readonly HrProgramDbContext _dbContext;
         private readonly IMapper _mapper;
-        //private readonly ILogger<WorkplaceService> _logger;
 
         public WorkplaceService(HrProgramDbContext dbContext, IMapper mapper)
-                                //ILogger<WorkplaceService> logger
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            //_logger = logger;
         }
 
         public IEnumerable<WorkplaceDto> GetAll()

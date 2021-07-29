@@ -6,7 +6,7 @@ namespace HrProgram.Services.Interfaces
     public interface IVacationService
     {
         IEnumerable<VacationDto> GetAll(int userId);
-        VacationDto GetById(int vacationId);
+        VacationDto GetById(int vacationId, int userId);
         int Create(CreateAndUpdateVacationDto dto);
         void Delete(int id);
         void Update(int id, CreateAndUpdateVacationDto dto);

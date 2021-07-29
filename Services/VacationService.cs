@@ -32,9 +32,10 @@ namespace HrProgram.Services
         {
             var vacations = _dbContext
                 .Vacations
-                .Where(v => v.UserId == userId);
+                .Where(v => v.UserId == userId)
+                .ToList();
 
-            if (vacations is null)
+            if (!vacations.Any())
                 throw new NotFoundException("Vacation not found");
 
             var vacation = vacations
@@ -50,11 +51,11 @@ namespace HrProgram.Services
             return vacationsDto;
         }
 
-        public VacationDto GetById(int vacationId)
+        public VacationDto GetById(int vacationId, int userId)
         {
             var vacation = _dbContext
                 .Vacations
-                .Where(v => v.UserId == _userContextService.GetUserId)
+                .Where(v => v.UserId == userId)
                 .FirstOrDefault(v => v.Id == vacationId);
 
             if (vacation is null)

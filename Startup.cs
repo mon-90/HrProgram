@@ -36,6 +36,7 @@ namespace HrProgram
             Configuration.GetSection("Authentication").Bind(authenticationSettings);
 
             services.AddSingleton(authenticationSettings);
+
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = "Bearer";
@@ -60,18 +61,22 @@ namespace HrProgram
             services.AddControllers().AddFluentValidation().AddNewtonsoftJson();
             services.AddScoped<HrProgramSeeder>();
             services.AddAutoMapper(this.GetType().Assembly);
-            services.AddScoped<IWorkplaceService, WorkplaceService>();
+
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             services.AddSwaggerGen();
-            services.AddScoped<IAccountService, AccountService>();
+
             services.AddScoped<IValidator<LoginUserDto>, LoginUserDtoValidator>();
             services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
             services.AddScoped<IValidator<EditPasswordUserDto>, EditPasswordUserDtoValidator>();
             services.AddScoped<IValidator<WorkplaceDto>, WorkplaceDtoValidator>();
+
+            services.AddScoped<IWorkplaceService, WorkplaceService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IVacationService, VacationService>();
             services.AddScoped<IUserContextService, UserContextService>();
+
             services.AddHttpContextAccessor();
         }
 

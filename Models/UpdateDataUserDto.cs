@@ -11,8 +11,8 @@ namespace HrProgram.Models
         public DateTime? DateOfEmployment { get; set; } = null;
         public DateTime? DateOfRelease { get; set; } = null;
 
-        //public int RoleId { get; set; }
-        public int WorkplaceId { get; set; }
+        public int? RoleId { get; set; }
+        public int? WorkplaceId { get; set; }
 
         // address
         public string Country { get; set; }

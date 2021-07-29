@@ -26,11 +26,11 @@ namespace HrProgram.Controllers
             return Ok(vacationsDto);
         }
 
-        [HttpGet("{vacationId}")]
+        [HttpGet("user/{userId}/{vacationId}")]
         [Authorize(Roles = "Hr,Employee")]
-        public ActionResult<VacationDto> Get([FromRoute] int vacationId)
+        public ActionResult<VacationDto> Get([FromRoute] int vacationId, [FromRoute] int userId)
         {
-            var vacationDto = _vacationService.GetById(vacationId);
+            var vacationDto = _vacationService.GetById(vacationId, userId);
 
             return Ok(vacationDto);
         }
@@ -62,7 +62,7 @@ namespace HrProgram.Controllers
             return Ok();
         }
 
-        [HttpPut("{vacationId}")]
+        [HttpPut("accept/{vacationId}")]
         [Authorize(Roles = "Hr")]
         public ActionResult Accept([FromRoute] int vacationId, [FromBody] AcceptVacationDto dto)
         {
